@@ -26,7 +26,27 @@
      => 프로젝트의 복잡도가 높고, 하나의 계층에 포함되는 클래스가 많은경우
         기능별로 명확한 구분이 가능한 경우, 추후에 별도로 모듈분리가 가능한 경우
             
-            
+  *컨트롤러 설계
+  -공통적인 URI의 경로/각 기능별 URI 경로
+  -각 URI의 호출 방법(GET/POST)
+  -각 기능별 결과처리(뷰 출력, 리다이렉트)
+  -예외페이지
+  
+  => 컨트롤러를 구분하는 기준은 도메인객체(디비 테이블)          
+  
+  공통 URI : /board or /boards
+  호출방식 : GET - 사용자 정보입력, 조회, 출력
+             POST - 데이터를 처리(쓰기, 수정, 삭제..)
+             
+  기능별 URI : 
+          글 쓰기 GET : /board/register          
+          글 쓰기 POST : /board/register          
+          리스트 GET : /board/list
+          본문 읽기 GET : /board/read?bno=000
+          본문 수정 GET : /board/modify?bno=000
+          본문 수정 POST : /board/modify
+          본문 삭제 POST : /board/remove
+          
             
             
             
