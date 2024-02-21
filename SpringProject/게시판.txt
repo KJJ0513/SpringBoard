@@ -1,55 +1,84 @@
 게시판.txt
 
--데이터 베이스
-   디비생성, 계정생성, 테이블 설계, 테이블 더미데이터 생성
--스프링 MVC
-   패키지 구조 설계, 개발환경 구성(빌드도구MAVEN), 컨트롤러, 서비스, DAO 구조 설계, 테스트 파일 생성
--화면(view)
-   뷰페이지 형태 설계
+- 데이터베이스
+	디비생성,계정생성,테이블 설계(ERD),테이블 더미데이터 생성
+- 스프링 MVC
+    패키지 구조 설계, 개발환경 구성(빌드도구MAVEN), 컨트롤러,
+    서비스,DAO 구조 설계, 테스트 파일 생성     
+- 화면(view)
+    뷰페이지 형태 설정 
+    
+    
+    
+p83.  커넥션풀 : 디비 연결정보를 미리 생성 / 대여
+   => HikariCP - 스프링부트에서도 사용
+
+
+
+CREATE TABLE `springdb`.`tbl_board` (
+  `bno` INT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(100) NOT NULL,
+  `content` TEXT NULL,
+  `writer` VARCHAR(50) NOT NULL,
+  `viewcnt` INT NULL DEFAULT 0,
+  `regdate` TIMESTAMP NOT NULL DEFAULT now(),
+  PRIMARY KEY (`bno`));
+  
+  
+  
+  * 프로젝트 패키지 구조
+    
+   - 계층형 구조 : 각각의 객체 별로 따로관리 (Controller,Service,Persistence)
+      장점 : 프로젝트에 대한 이해도가 낮음 => 구조파악이 쉬움
+      단점 : 클래스가 많아지면 복잡, 모듈별로 분리가 어려움
+      
+      => 프로젝트의 복잡도가 낮고,기능이 적은 프로젝트
+          기능을 특정 기준을 바탕으로 구분하기 어려운경우
+          해당기능을 별도의 모듈로 분리할 가능성이 없는경우 
    
-  *프로젝트 패키지 구조
-  
-  -계층형 구조 : 각각의 객체 별로 따로관리 (Controller, Service,Persistence)
-     장점 : 프로젝트에 대한 이해도가 낮음 => 구조 파악이 쉬움
-     단점 : 클래스가 많아지면 복잡, 모듈별로 분리가 어려움
-  
-     =>프로젝트의 복잡도가 낮고, 기능이 적은 프로젝트
-       기능을 특정 기준을 바탕으로 구분하기 어려운경우
-       해당기능을 별도의 모듈로 분리할 가능성이 없는경우
-  
-  -도메인형 구조 : 도메인을 중심으로 따로관리 (Member.Controller, Member.Service, Member.Persistence)
-     장점 : 모듈별로 구분이 쉬움 => 분리가 쉽다
-     단점 : 프로젝트에 대한 이해도가 낮으면, 구조파악이 힘듦
-            개인적인 성향에 따른 구분(기준이 모호하다)
-            *패키지간의 순환 참조 가능성 있음
-  
-     => 프로젝트의 복잡도가 높고, 하나의 계층에 포함되는 클래스가 많은경우
-        기능별로 명확한 구분이 가능한 경우, 추후에 별도로 모듈분리가 가능한 경우
-            
-  *컨트롤러 설계
-  -공통적인 URI의 경로/각 기능별 URI 경로
-  -각 URI의 호출 방법(GET/POST)
-  -각 기능별 결과처리(뷰 출력, 리다이렉트)
-  -예외페이지
-  
-  => 컨트롤러를 구분하는 기준은 도메인객체(디비 테이블)          
-  
-  공통 URI : /board or /boards
-  호출방식 : GET - 사용자 정보입력, 조회, 출력
-             POST - 데이터를 처리(쓰기, 수정, 삭제..)
+   - 도메인형 구조 : 도메인을 중심으로 따로관리 (Member.Controller,Member.Service.Member.Persistence)
+      장점 : 모듈별로 구분이 쉬움(즉, 분리가 쉬움)
+      단점 : 프로젝트에 대한 이해도가 낮으면, 구조파악이 힘듦
+             개인적인 성향에 따른 구분(기준모호하다)
+             * 패키지간의 순환참조 가능성 있음
+       
+       => 프로젝트의 복잡도가 높고, 하나의 계층에 포함되는 클래스가 많은경우
+          기능별로 명확한 구분이 가능한 경우, 추후에 별도로 모듈 분리가 가능한경우 
              
+   
+   
+   * 컨트롤러 설계
+   - 공통적인 URI의 경로/ 각 기능별 URI 경로 
+   - 각 URI의 호출방법 (GET/POST)
+   - 각 기능별 결과처리(뷰 출력, 리다이렉트)
+   - 예외페이지
+   
+   => 컨트롤러를 구분하는 기준은 도메인객체(디비 테이블)
+   
+  ----------------------------------------------------------------------- 
+  공통 URI : /board  or /boards
+  호출방식 :  GET - 사용자 정보입력, 조회, 출력
+              POST - 데이터를 처리(쓰기,수정,삭제)
+              
   기능별 URI : 
-          글 쓰기 GET : /board/register          
-          글 쓰기 POST : /board/register          
-          리스트 GET : /board/list
-          본문 읽기 GET : /board/read?bno=000
-          본문 수정 GET : /board/modify?bno=000
-          본문 수정 POST : /board/modify
-          본문 삭제 POST : /board/remove
-          
-            
-            
-            
-            
-            
-            
+           글쓰기GET : /board/register
+           글쓰기POST : /board/register
+           리스트GET : /board/list
+           본문읽기GET : /board/read?bno=000
+           본문수정GET : /board/modify?bno=000
+           본문수정POST : /board/modify
+           본문삭제POST : /board/remove?bno=000
+              
+              
+              
+              
+   
+  
+  
+  
+  
+
+
+
+
+   

@@ -19,7 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 		)
 public class DataSourceTest {
 	
-	//디비연결 정보저장 객체
+	// 디비연결 정보저장 객체
 	@Inject
 	private DataSource ds;
 	
@@ -28,7 +28,7 @@ public class DataSourceTest {
 	
 	@Test
 	public void 테스트() {
-		logger.debug(" ds : "+ds);
+		logger.debug(" ds : "+ds);		
 		
 		try {
 			Connection con = ds.getConnection();
@@ -37,5 +37,18 @@ public class DataSourceTest {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
 }

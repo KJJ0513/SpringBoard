@@ -9,32 +9,22 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.domain.BoardVO;
 import com.itwillbs.persistence.BoardDAO;
 
-
 @Service
-public class BoardServiceImpl implements BoardService{
+public class BoardServiceImpl implements BoardService {
 
+	// DAO객체 주입
 	@Inject
 	private BoardDAO bdao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	
 	@Override
-	public void regist(BoardVO vo) throws Exception{
-	
-		logger.debug(" regist(BoardVO vo) -> DAO 글쓰기 동작 호출 ");
+	public void regist(BoardVO vo) throws Exception {
+		logger.debug(" regist(BoardVO vo)실행 -> DAO 글쓰기 동작 호출 ");
 		
 		bdao.boardCreate(vo);
 		
-		logger.debug("  ");
-		
+		logger.debug(" 서비스 동작완료 -> 컨트롤러 이동 ");
 	}
 	
-	
-	
-	
-	
-
-	
-	
-
 }

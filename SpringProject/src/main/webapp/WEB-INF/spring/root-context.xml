@@ -6,42 +6,42 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-	<!-- DataSource : 디비연결 -->	
-<!-- 	<bean id="dataSource"  -->
-<!-- 	      class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
-<!-- 	      <property name="driverClassName"  -->
-<!-- 	                value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" /> -->
-<!-- 	      <property name="url"  -->
-<!-- 	                value="jdbc:log4jdbc:mysql://local:3306/springdb"/>           -->
-<!-- 	      <property name="username"  -->
-<!-- 	                value="root" />           -->
-<!-- 	      <property name="password"  -->
-<!-- 	                value="1234" />           -->
-    
-<!-- 	</bean> -->
-	<!-- DataSource : 디비연결 -->	
+	
+	
+	<!-- DataSource : 디비연결 -->
+	<!-- <bean id="dataSource" 
+	      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	      <property name="driverClassName" 
+	                value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+	      <property name="url"
+	                value="jdbc:log4jdbc:mysql://localhost:3306/springdb"/>
+	      <property name="username" 
+	                value="root"/>
+	      <property name="password" 
+	                value="1234" />
+	</bean> -->
+	<!-- DataSource : 디비연결 -->
+	
 	<!-- HikariConfig : 디비연결 정보 -->
 	<bean id="hikariConfig" 
 	      class="com.zaxxer.hikari.HikariConfig">
-	      <property name="driverClassName" 
-	                value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
-	      <property name="jdbcUrl" 
-	                value="jdbc:log4jdbc:mysql://localhost:3306/springdb" />          
-	      <property name="username" 
-	                value="root" />          
-	      <property name="password" 
-	                value="1234" />          
+	     <property name="driverClassName"
+	               value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" />
+	     <property name="jdbcUrl"
+	               value="jdbc:log4jdbc:mysql://localhost:3306/springdb"/>
+	     <property name="username" value="root"/>
+	     <property name="password" value="1234"/>
 	</bean>
 	<!-- HikariConfig : 디비연결 정보 -->
 	
-	<!-- DataSource : 디비연결 (cp) -->
+	<!-- DataSource : 디비연결(CP) -->
 	<bean id="dataSource" 
 	      class="com.zaxxer.hikari.HikariDataSource" 
-	      destroy-method="close" >
-	      <constructor-arg ref="hikariConfig" />
-	</bean>
-	<!-- DataSource : 디비연결 (cp) -->
+	      destroy-method="close">
+	      <constructor-arg ref="hikariConfig"/>
+	
+	</bean>	
+	<!-- DataSource : 디비연결(CP) -->
 	
 	<!-- SqlSessionFactory : 디비연결,SQL실행,Mybatis설정,Mapper설정  -->
 	<bean id="sqlSessionFactory" 
@@ -64,13 +64,19 @@
 	</bean>	
 	<!-- SqlSessionTemplate : 디비연결(자동),자원해제(자동),SQL실행,Mybatis설정,Mapper설정 -->
 	
+	
+	<!-- com.itwillbs.persistence패키지에 컴포넌트(객체)를 찾기 -->
+	<context:component-scan base-package="com.itwillbs.persistence" />
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 서비스 객체 주입 -->
-	<context:component-scan base-package="com.itwillbs.service"></context:component-scan>
-	<!-- 서비스 객체 주입 -->
+	<context:component-scan base-package="com.itwillbs.service"/>
 	
-	<!-- 컴포넌트 객체 주입 -->
-	<context:component-scan base-package="com.itwillbs.persistence"></context:component-scan>
-	<!-- 컴포넌트 객체 주입 -->
-	
-	
+		
 </beans>

@@ -12,22 +12,22 @@ import com.itwillbs.domain.BoardVO;
 @Repository
 public class BoardDAOImpl implements BoardDAO {
 
-
-    //mapper 접근가능한 객체 (SQL실행객체) 주입
-    @Inject
-    private SqlSession sqlSession;
-    
-    private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
-   
-    private static final String NAMESPACE= "com.itwillbs.mapper.BoardMapper";
-
+	// mapper 접근가능한 객체 (SQL실행객체) 주입
+	@Inject
+	private SqlSession sqlSession;
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardDAOImpl.class);
+	
+	private static final String NAMESPACE = "com.itwillbs.mapper.BoardMapper";
+	
 	@Override
 	public void boardCreate(BoardVO vo) throws Exception {
 		logger.debug(" boardCreate(BoardVO vo) -> mapper 호출 ");
 		
-	    sqlSession.insert(NAMESPACE+".createBoard",vo);
-
-	    logger.debug(" mapper 실행완료 -> 서비스 이동 ");
+		sqlSession.insert(NAMESPACE + ".createBoard", vo);
+		
+		logger.debug(" mapper 실행완료 -> 서비스 이동");
+		
 	}
 
 }
