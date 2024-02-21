@@ -8,7 +8,7 @@
     <title>AdminLTE 2 | Dashboard</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     <!-- Bootstrap 3.3.4 -->
-    <link href="${pageContext.request.contextPath }" rel="stylesheet" type="text/css" />
+    <link href="/resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- Font Awesome Icons -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
@@ -51,7 +51,7 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
-<!--               Messages: style can be found in dropdown.less -->
+              <!-- Messages: style can be found in dropdown.less-->
               <li class="dropdown messages-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <i class="fa fa-envelope-o"></i>
@@ -60,9 +60,9 @@
                 <ul class="dropdown-menu">
                   <li class="header">You have 4 messages</li>
                   <li>
-                    inner menu: contains the actual data
+                    <!-- inner menu: contains the actual data -->
                     <ul class="menu">
-                      <li>start message
+                      <li><!-- start message -->
                         <a href="#">
                           <div class="pull-left">
                             <img src="/resources/dist/img/user7-128x128.jpg" class="img-circle" alt="User Image"/>
@@ -73,7 +73,7 @@
                           </h4>
                           <p>Why not buy a new awesome theme?</p>
                         </a>
-                       </li><!--  end message -->
+                      </li><!-- end message -->
                       <li>
                         <a href="#">
                           <div class="pull-left">
