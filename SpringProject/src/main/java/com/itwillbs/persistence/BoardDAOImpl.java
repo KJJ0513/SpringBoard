@@ -1,5 +1,7 @@
 package com.itwillbs.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -30,4 +32,12 @@ public class BoardDAOImpl implements BoardDAO {
 		
 	}
 
+	@Override
+	public List<BoardVO> boardListSelect() throws Exception {
+		logger.debug(" boardListSelect() 호출 ");
+		
+		return sqlSession.selectList(NAMESPACE+".selectBoardList");
+	}
+
+	
 }
