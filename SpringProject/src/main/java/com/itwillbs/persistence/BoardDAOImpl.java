@@ -29,15 +29,25 @@ public class BoardDAOImpl implements BoardDAO {
 		sqlSession.insert(NAMESPACE + ".createBoard", vo);
 		
 		logger.debug(" mapper 실행완료 -> 서비스 이동");
-		
-	}
-
-	@Override
-	public List<BoardVO> boardListSelect() throws Exception {
-		logger.debug(" boardListSelect() 호출 ");
-		
-		return sqlSession.selectList(NAMESPACE+".selectBoardList");
 	}
 
 	
+	@Override
+	public List<BoardVO> boardListSelect() throws Exception {
+		logger.debug(" boardListSelect() 호출 ");
+				
+		return sqlSession.selectList(NAMESPACE + ".selectBoardList");
+	}
+
+
+	@Override
+	public BoardVO boardSelect(Integer bno) throws Exception {
+		logger.debug(" boardSelect(Integer bno) 호출 ");
+		
+		return sqlSession.selectOne(NAMESPACE + ".selectBoard",bno);
+	}
+	
+	
+	
+
 }

@@ -29,11 +29,26 @@ public class BoardServiceImpl implements BoardService {
 		logger.debug(" 서비스 동작완료 -> 컨트롤러 이동 ");
 	}
 
+	
 	@Override
 	public List<BoardVO> getList() throws Exception {
 		logger.debug(" getList() 실행 ");
 		return bdao.boardListSelect();
 	}
+
+	
+
+	@Override
+	public BoardVO read(Integer bno) throws Exception {
+		logger.debug("  read(Integer bno)  실행 ");
+		
+		return bdao.boardSelect(bno);
+	}
+	
+	
+	
+	
+	
 	
 	
 }
