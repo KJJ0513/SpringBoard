@@ -83,7 +83,7 @@ viewUpdateStatus : ${viewUpdateStatus }
 		$(".btn-success").click(function(){
 			alert(" '목록이동' 버튼 클릭! ");
 			//목록으로 이동
-			location.href="/board/list";
+			location.href="/board/listCri?page=${cri.page}&pageSize=${param.pageSize}";
 		});	
 		
 	});
