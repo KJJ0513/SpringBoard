@@ -34,4 +34,7 @@ public interface BoardService {
 	public List<BoardVO> getListCri(Criteria cri) throws Exception;
 	
 
+	// 총 글의 개수
+	public int getBoardListCount() throws Exception;
+	
 }

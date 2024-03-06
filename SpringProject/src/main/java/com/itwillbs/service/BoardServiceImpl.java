@@ -75,6 +75,15 @@ public class BoardServiceImpl implements BoardService {
 		logger.debug(" getListCri(Criteria cri) 호출 ");
 		return bdao.boardListCriSelect(cri);
 	}
+
+
+	@Override
+	public int getBoardListCount() throws Exception {
+		logger.debug("  getBoardListCount() 호출 ");
+		return bdao.boardListCount();
+	}
+	
+	
 	
 	
 	

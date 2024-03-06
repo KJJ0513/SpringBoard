@@ -4,11 +4,13 @@
 <%@ include file="../include/header.jsp"%>
 
 <%-- ${boardList.size() } --%>
+<!-- listCri.jsp -->
 viewUpdateStatus : ${viewUpdateStatus }
 <hr>
 
 
-cri : ${cri }
+cri : ${cri }<br>
+pageVO : ${pageVO }<br>
 
 <div class="content">
 
@@ -50,11 +52,22 @@ cri : ${cri }
 
 		<div class="box-footer clearfix">
 			<ul class="pagination pagination-sm no-margin pull-right">
-				<li><a href="#">«</a></li>
-				<li><a href="#">1</a></li>
-				<li><a href="#">2</a></li>
-				<li><a href="#">3</a></li>
-				<li><a href="#">»</a></li>
+				
+				<c:if test="${pageVO.prev }">
+					<li><a href="/board/listCri?page=${pageVO.startPage - 1 }">«</a></li>
+				</c:if>
+				
+				<c:forEach var="idx" begin="${pageVO.startPage }" 
+				           end="${pageVO.endPage }" step="1">
+					<li ${pageVO.cri.page == idx? "class='active'":""}>
+						<a href="/board/listCri?page=${idx }">${idx }</a>
+					</li>
+				</c:forEach>
+				
+				<c:if test="${pageVO.next }">
+					<li><a href="/board/listCri?page=${pageVO.endPage + 1 }">»</a></li>
+				</c:if>
+				
 			</ul>
 		</div>
 	</div>
